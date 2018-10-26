@@ -1,6 +1,6 @@
 <?php
 
-namespace ZakNesler\TailwindPreset;
+namespace Jasonlbeggs\TailwindPreset;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\File;
@@ -20,7 +20,6 @@ class Tailwind extends Preset
 
         static::installScripts();
         static::installStyles();
-        static::updateExampleComponent();
 
         static::removeNodeModules();
     }
@@ -83,8 +82,6 @@ class Tailwind extends Preset
             'cross-env' => '^5.2',
             'laravel-mix' => '^2.1',
             'laravel-mix-purgecss' => '^2.2',
-            'less' => '^3.8',
-            'less-loader' => '^4.1',
             'tailwindcss' => '^0.6',
             'vue' => '^2.5',
         ];
@@ -111,8 +108,8 @@ class Tailwind extends Preset
      */
     protected static function ensureResourceDirectoriesExist()
     {
-        if (! file_exists(resource_path('less'))) {
-            File::makeDirectory(resource_path('less'), 0755, true);
+        if (! file_exists(resource_path('css'))) {
+            File::makeDirectory(resource_path('css'), 0755, true);
         }
 
         if (! file_exists(resource_path('js'))) {
@@ -132,10 +129,12 @@ class Tailwind extends Preset
     protected static function installScripts()
     {
         copy(__DIR__.'/stubs/tailwind.stub', base_path('tailwind.js'));
-        copy(__DIR__.'/stubs/webpack.stub', base_path('webpack.mix.js'));
+        copy(__DIR__.'/stubs/webpack.mix.stub', base_path('webpack.mix.js'));
 
         copy(__DIR__.'/stubs/js/app.stub', resource_path('js/app.js'));
         copy(__DIR__.'/stubs/js/bootstrap.stub', resource_path('js/bootstrap.js'));
+
+        File::deleteDirectory(resource_path('js/components/ExampleComponent.vue'));
     }
 
     /**
@@ -147,19 +146,6 @@ class Tailwind extends Preset
     {
         File::deleteDirectory(resource_path('sass'));
 
-        copy(__DIR__.'/stubs/less/app.stub', resource_path('less/app.less'));
-    }
-
-    /**
-     * Update the example Vue component.
-     *
-     * @return void
-     */
-    protected static function updateExampleComponent()
-    {
-        copy(
-            __DIR__.'/stubs/js/components/ExampleComponent.stub',
-            resource_path('js/components/ExampleComponent.vue')
-        );
+        copy(__DIR__.'/stubs/css/app.stub', resource_path('css/app.css'));
     }
 }

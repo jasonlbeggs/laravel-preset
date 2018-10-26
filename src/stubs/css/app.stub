@@ -1,0 +1,41 @@
+@tailwind preflight;
+
+@tailwind components;
+
+[v-cloak] {
+    @apply .hidden;
+}
+
+input[type=checkbox] {
+    @apply .relative .border .bg-grey-lighter .rounded-sm .outline-none .appearance-none .cursor-pointer .overflow-hidden .w-4 .h-4;
+
+    transition: background 100ms ease-in-out;
+}
+
+input[type=checkbox]:focus,
+input[type=checkbox]:active,
+input[type=checkbox]:checked {
+    @apply .border-blue;
+}
+
+input[type=checkbox]::after {
+    @apply .block .absolute .opacity-0;
+
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath d='M0 11l2-2 5 5L18 3l2 2L7 18z'/%3E%3C/svg%3E");
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    top: 2px;
+    left: 2px;
+    transition: opacity 100ms ease-in-out;
+}
+
+input[type=checkbox]:checked {
+    @apply .bg-blue;
+}
+
+input[type=checkbox]:checked::after {
+    @apply .opacity-100;
+}
+
+@tailwind utilities;

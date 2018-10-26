@@ -1,12 +1,18 @@
 {
-    "name": "zaknesler/tailwind-preset",
+    "name": "jasonlbeggs/tailwind-preset",
     "description": "A Tailwind CSS preset for Laravel.",
-    "keywords": ["laravel", "laravel preset", "preset", "tailwind", "tailwindcss"],
+    "keywords": [
+        "laravel",
+        "laravel preset",
+        "preset",
+        "tailwind",
+        "tailwindcss"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Zak Nesler",
-            "email": "contact@zaknesler.com"
+            "name": "Jason Beggs",
+            "email": "jasonlbeggs@gmail.com"
         }
     ],
     "minimum-stability": "stable",
@@ -15,12 +21,14 @@
     },
     "autoload": {
         "psr-4": {
-            "ZakNesler\\TailwindPreset\\": "src/"
+            "Jasonlbeggs\\TailwindPreset\\": "src/"
         }
     },
     "extra": {
         "laravel": {
-            "providers": ["ZakNesler\\TailwindPreset\\TailwindServiceProvider"]
+            "providers": [
+                "Jasonlbeggs\\TailwindPreset\\TailwindServiceProvider"
+            ]
         }
     }
 }
