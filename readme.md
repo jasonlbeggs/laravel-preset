@@ -1,12 +1,12 @@
 ## Tailwind CSS Laravel Front-end Preset
 
-[![Latest Stable Version](https://poser.pugx.org/zaknesler/tailwind-preset/v/stable)](https://packagist.org/packages/zaknesler/tailwind-preset)
-[![Total Downloads](https://poser.pugx.org/zaknesler/tailwind-preset/downloads)](https://packagist.org/packages/zaknesler/tailwind-preset)
-[![License](https://poser.pugx.org/zaknesler/tailwind-preset/license)](https://packagist.org/packages/zaknesler/tailwind-preset)
+[![Latest Stable Version](https://poser.pugx.org/jasonlbeggs/tailwind-preset/v/stable)](https://packagist.org/packages/jasonlbeggs/tailwind-preset)
+[![Total Downloads](https://poser.pugx.org/jasonlbeggs/tailwind-preset/downloads)](https://packagist.org/packages/jasonlbeggs/tailwind-preset)
+[![License](https://poser.pugx.org/jasonlbeggs/tailwind-preset/license)](https://packagist.org/packages/jasonlbeggs/tailwind-preset)
 
-This is a Laravel front-end preset for Tailwind CSS. This preset will replace the default Bootstrap scaffolding, including the example Vue.js component. It will also compile the assets using Laravel Mix and PurgeCSS in order to generate the smallest files possible.
+This is a Laravel front-end preset for Tailwind CSS/Vue.js. This preset will replace the default Bootstrap scaffolding, including the example Vue.js component. It will also compile the assets using Laravel Mix and PurgeCSS in order to generate the smallest files possible and add PHP CS Fixer and ESLint/Prettier configurations.
 
-[**Demo**](https://preset.zaknesler.com) &middot; [View Screenshots](preview.md)
+[View Screenshots](preview.md)
 
 ### Installation
 
@@ -15,7 +15,7 @@ This is a Laravel front-end preset for Tailwind CSS. This preset will replace th
 To install this preset, you must first require the composer dependency. Laravel will automatically register the service provider for you.
 
 ```
-composer require zaknesler/tailwind-preset
+composer require jasonlbeggs/tailwind-preset
 ```
 
 Next, install either the `tailwind` or the `tailwind-auth` preset. The `tailwind-auth` preset includes authentication views, routes, and a controller.
@@ -33,17 +33,17 @@ php artisan preset tailwind-auth
 Install the NPM packages using your favorite package manager.
 
 ```
-yarn // npm install
+npm install // yarn
 ```
 
 Now you can compile the assets using any of the Laravel build scripts (dev, prod, watch).
 
 ```
-yarn dev // npm run dev
+npm run production // yarn production
 ```
 
 Ensure that your database is properly configured and migrated, and you're done! At this point, you may remove the composer dependency, as it is no longer needed.
 
 ```
-composer remove zaknesler/tailwind-preset
+composer remove jasonlbeggs/tailwind-preset
 ```

@@ -3,8 +3,8 @@
 namespace Jasonlbeggs\TailwindPreset;
 
 use Illuminate\Container\Container;
-use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Console\Presets\Preset;
+use Illuminate\Support\Facades\File;
 
 class Tailwind extends Preset
 {
@@ -73,19 +73,20 @@ class Tailwind extends Preset
     /**
      * Update the given package array.
      *
-     * @param  array  $packages
+     * @param array $packages
+     *
      * @return array
      */
     protected static function updatePackageArray(array $packages)
     {
         return [
             'axios' => '^0.18',
-            'babel-eslint' => '^10.0.1' ,
+            'babel-eslint' => '^10.0.1',
             'cross-env' => '^5.2',
-            'eslint-config-prettier' => '^3.1.0' ,
-            'eslint-plugin-prettier' => '^3.0.0' ,
-            'eslint-plugin-vue' => '^4.7.1' ,
-            'eslint' => '^5.8.0' ,
+            'eslint-config-prettier' => '^3.1.0',
+            'eslint-plugin-prettier' => '^3.0.0',
+            'eslint-plugin-vue' => '^4.7.1',
+            'eslint' => '^5.8.0',
             'laravel-mix-purgecss' => '^2.2',
             'laravel-mix' => '^2.1',
             'prettier' => '^1.14.3',
@@ -158,11 +159,11 @@ class Tailwind extends Preset
 
     protected static function installFormatters()
     {
-        if (!file_exists(base_path('.php_cs'))) {
+        if (! file_exists(base_path('.php_cs'))) {
             copy(__DIR__ . '/stubs/.php_cs.stub', base_path('.php_cs'));
         }
 
-        if (!file_exists(base_path('.eslintrc.js'))) {
+        if (! file_exists(base_path('.eslintrc.js'))) {
             copy(__DIR__ . '/stubs/.eslintrc.js.stub', base_path('.eslintrc.js'));
         }
     }

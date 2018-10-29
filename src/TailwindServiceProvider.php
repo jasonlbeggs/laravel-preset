@@ -2,8 +2,8 @@
 
 namespace Jasonlbeggs\TailwindPreset;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Console\PresetCommand;
+use Illuminate\Support\ServiceProvider;
 
 class TailwindServiceProvider extends ServiceProvider
 {
@@ -30,7 +30,8 @@ class TailwindServiceProvider extends ServiceProvider
     /**
      * Print message after successful installation.
      *
-     * @param  \Illuminate\Console\Command  $command
+     * @param \Illuminate\Console\Command $command
+     *
      * @return void
      */
     protected function installMessage($command)
