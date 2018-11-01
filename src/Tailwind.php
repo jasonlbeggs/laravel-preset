@@ -80,18 +80,18 @@ class Tailwind extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-            'axios' => '^0.18',
+            'axios' => '^0.18.0',
             'babel-eslint' => '^10.0.1',
-            'cross-env' => '^5.2',
+            'cross-env' => '^5.2.0',
             'eslint-config-prettier' => '^3.1.0',
             'eslint-plugin-prettier' => '^3.0.0',
             'eslint-plugin-vue' => '^4.7.1',
             'eslint' => '^5.8.0',
-            'laravel-mix-purgecss' => '^2.2',
-            'laravel-mix' => '^2.1',
+            'laravel-mix' => '^2.1.14',
+            'laravel-mix-purgecss' => '^3.0.0',
             'prettier' => '^1.14.3',
-            'tailwindcss' => '^0.6',
-            'vue' => '^2.5',
+            'tailwindcss' => '^0.7.0',
+            'vue' => '^2.5.17',
         ];
     }
 
