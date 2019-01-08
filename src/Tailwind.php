@@ -80,18 +80,19 @@ class Tailwind extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-            'axios' => '^0.18.0',
+            'axios' => '^0.18',
             'babel-eslint' => '^10.0.1',
-            'cross-env' => '^5.2.0',
-            'eslint-config-prettier' => '^3.1.0',
-            'eslint-plugin-prettier' => '^3.0.0',
-            'eslint-plugin-vue' => '^4.7.1',
-            'eslint' => '^5.8.0',
-            'laravel-mix' => '^2.1.14',
-            'laravel-mix-purgecss' => '^3.0.0',
-            'prettier' => '^1.14.3',
-            'tailwindcss' => '^0.7.0',
-            'vue' => '^2.5.17',
+            'cross-env' => '^5.2',
+            'eslint' => '^5.12.0',
+            'eslint-config-prettier' => '^3.3.0',
+            'eslint-plugin-prettier' => '^3.0.1',
+            'eslint-plugin-vue' => '^5.1.0',
+            'laravel-mix' => '^4.0.13',
+            'laravel-mix-purgecss' => '^4.0',
+            'prettier' => '^1.15.3',
+            'tailwindcss' => '^0.7',
+            'vue' => '^2.5.21',
+            'vue-template-compiler' => '^2.5.21',
         ];
     }
 
@@ -116,17 +117,12 @@ class Tailwind extends Preset
      */
     protected static function ensureResourceDirectoriesExist()
     {
-        if (! file_exists(resource_path('css'))) {
-            File::makeDirectory(resource_path('css'), 0755, true);
-        }
-
-        if (! file_exists(resource_path('js'))) {
-            File::makeDirectory(resource_path('js'), 0755, true);
-        }
-
-        if (! file_exists(resource_path('js/components'))) {
-            File::makeDirectory(resource_path('js/components'), 0755, true);
-        }
+        collect(['css', 'js', 'js/components'])
+            ->each(function ($dir) {
+                if (! file_exists(resource_path($dir))) {
+                    File::makeDirectory(resource_path($dir), 0755, true);
+                }
+            });
     }
 
     /**

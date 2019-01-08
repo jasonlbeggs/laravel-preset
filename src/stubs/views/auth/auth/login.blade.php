@@ -56,19 +56,23 @@
                             </label>
                         </div>
 
-                        <div class="block mb-8">
+                        <div class="block">
                             <input class="appearance-none w-full border-0 bg-blue hover:bg-blue-dark text-white rounded cursor-pointer p-3" type="submit" value="Sign in" />
                         </div>
 
-                        <div class="text-center text-sm text-grey-dark">
-                            Don't have an account? <a class="font-semibold text-grey-darker no-underline hover:underline" href="{{ route('register') }}">Sign up</a>
-                        </div>
+                        @if (Route::has('register'))
+                            <div class="mt-8 text-center text-sm text-grey-dark">
+                                Don't have an account? <a class="font-semibold text-grey-darker no-underline hover:underline" href="{{ route('register') }}">Sign up</a>
+                            </div>
+                        @endif
                     </form>
                 </div>
 
-                <div class="text-center mt-8">
-                    <a class="text-grey-darker no-underline hover:underline" href="{{ route('password.request') }}">Forgot password?</a>
-                </div>
+                @if (Route::has('password.request'))
+                    <div class="text-center mt-8">
+                        <a class="text-grey-darker no-underline hover:underline" href="{{ route('password.request') }}">Forgot password?</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
