@@ -83,16 +83,17 @@ class Tailwind extends Preset
             'axios' => '^0.18',
             'babel-eslint' => '^10.0.1',
             'cross-env' => '^5.2',
-            'eslint' => '^5.12.0',
             'eslint-config-prettier' => '^3.3.0',
             'eslint-plugin-prettier' => '^3.0.1',
             'eslint-plugin-vue' => '^5.1.0',
+            'eslint' => '^5.12.0',
+            'glob-all' => '^3.1.0',
             'laravel-mix' => '^4.0.13',
-            'laravel-mix-purgecss' => '^4.0',
             'prettier' => '^1.15.3',
+            'purgecss-webpack-plugin' => '^1.4.0',
             'tailwindcss' => '^0.7',
-            'vue' => '^2.5.21',
             'vue-template-compiler' => '^2.5.21',
+            'vue' => '^2.5.21',
         ];
     }
 

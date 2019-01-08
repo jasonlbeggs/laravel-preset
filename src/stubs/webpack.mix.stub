@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 const tailwind = require('tailwindcss');
-require('laravel-mix-purgecss');
+const glob = require('glob-all');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 mix
   .postCss('resources/css/app.css', 'public/css')
@@ -10,5 +11,26 @@ mix
   });
 
 if (mix.inProduction()) {
-  mix.purgeCss().version();
+  mix
+    .webpackConfig({
+      plugins: [
+        new PurgecssPlugin({
+          paths: glob.sync([
+            path.join(__dirname, 'resources/views/**/*.blade.php'),
+            path.join(__dirname, 'resources/js/**/*.vue'),
+          ]),
+          extractors: [
+            {
+              extractor: {
+                extract(content) {
+                  return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+                },
+              },
+              extensions: ['html', 'js', 'php', 'vue'],
+            },
+          ],
+        }),
+      ],
+    })
+    .version();
 }
