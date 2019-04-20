@@ -61,11 +61,9 @@ class Tailwind extends Preset
             'auth/login.stub',
             'auth/register.stub',
             'auth/verify.stub',
-            'welcome.stub',
             'errors/404.stub',
             'errors/500.stub',
             'errors/503.stub',
-            'layouts/partials/_content.stub',
             'layouts/partials/_header.stub',
             'layouts/base.stub',
             'home.stub',
@@ -89,7 +87,7 @@ class Tailwind extends Preset
             'cross-env' => '^5.2',
             'laravel-mix' => '^4.0',
             'laravel-mix-purgecss' => '^4.1',
-            'tailwindcss' => '^0.7',
+            'tailwindcss' => '^1.0.0-beta.5',
             'vue' => '^2.6',
             'vue-template-compiler' => '^2.6',
         ];
@@ -187,7 +185,9 @@ class Tailwind extends Preset
      */
     protected static function installScripts()
     {
-        File::copy(__DIR__.'/stubs/tailwind.stub', base_path('tailwind.js'));
+        File::delete(base_path('webpack.mix.js'));
+
+        File::copy(__DIR__.'/stubs/tailwind.config.stub', base_path('tailwind.config.js'));
         File::copy(__DIR__.'/stubs/webpack.mix.stub', base_path('webpack.mix.js'));
 
         File::copy(__DIR__.'/stubs/js/app.stub', resource_path('js/app.js'));
