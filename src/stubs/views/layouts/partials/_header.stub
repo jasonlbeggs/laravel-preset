@@ -1,7 +1,7 @@
-<div class="h-2 w-full block bg-blue-500"></div>
+<div class="h-1 w-full block bg-blue-500"></div>
 
-<div class="p-6 w-full bg-gray-100 border-b">
-    <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-between">
+<div class="w-full mb-12">
+    <div class="container mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
         <div class="mr-6 text-lg">
             <a class="font-semibold text-gray-600 hover:text-gray-700 no-underline" href="/">
                 {{ config('app.name') }}
@@ -20,7 +20,7 @@
             <div class="block md:flex-grow">
                 <ul class="-mb-6 md:-mr-6 md:mb-0 flex flex-col md:flex-row list-reset">
                     <li class="mb-6 md:mr-6 md:mb-0">
-                        <a class="block md:inline text-blue-700 hover:text-blue-900 no-underline" href="{{ route('home') }}">
+                        <a class="block md:inline text-blue-700 hover:text-blue-900 no-underline" href="/dashboard">
                             Home
                         </a>
                     </li>

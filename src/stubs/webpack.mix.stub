@@ -1,34 +1,19 @@
 const mix = require('laravel-mix');
-const tailwind = require('tailwindcss');
-const glob = require('glob-all');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 mix
   .postCss('resources/css/app.css', 'public/css')
   .js('resources/js/app.js', 'public/js')
   .options({
-    postCss: [tailwind()],
+    postCss: [require('postcss-import'), require('tailwindcss')],
   });
 
 if (mix.inProduction()) {
   mix
-    .webpackConfig({
-      plugins: [
-        new PurgecssPlugin({
-          paths: glob.sync([
-            path.join(__dirname, 'resources/views/**/*.blade.php'),
-            path.join(__dirname, 'resources/js/**/*.vue'),
-          ]),
-          extractors: [
-            {
-              extractor: {
-                extract(content) {
-                  return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
-                },
-              },
-              extensions: ['html', 'js', 'php', 'vue'],
-            },
-          ],
+    .options({
+      postCss: [
+        require('@fullhuman/postcss-purgecss')({
+          content: ['resources/views/**/*.blade.php', 'resources/js/**/*.vue'],
+          defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
         }),
       ],
     })

@@ -1,0 +1,7 @@
+<?php
+
+Auth::routes();
+
+Route::redirect('/', '/dashboard');
+
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth');

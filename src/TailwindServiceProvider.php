@@ -19,12 +19,6 @@ class TailwindServiceProvider extends ServiceProvider
 
             $this->installMessage($command);
         });
-
-        PresetCommand::macro('tailwind-auth', function ($command) {
-            Tailwind::installWithAuth();
-
-            $this->installMessage($command);
-        });
     }
 
     /**

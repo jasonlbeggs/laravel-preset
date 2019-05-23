@@ -2,7 +2,6 @@
 
 namespace Jasonlbeggs\TailwindPreset;
 
-use Illuminate\Container\Container;
 use Illuminate\Foundation\Console\Presets\Preset;
 use Illuminate\Support\Facades\File;
 
@@ -26,36 +25,16 @@ class Tailwind extends Preset
     }
 
     /**
-     * Install single welcome view.
+     * Install authentication files.
      *
      * @return void
      */
     public static function install()
     {
         static::setup();
+        static::installRoutes();
 
-        static::installViews('default', [
-            'welcome.stub',
-        ]);
-    }
-
-    /**
-     * Install authentication files.
-     *
-     * @return void
-     */
-    public static function installWithAuth()
-    {
-        static::setup();
-        static::installAuthRoutes();
-
-        static::makeViewDirectories([
-            'auth/passwords',
-            'errors',
-            'layouts/partials',
-        ]);
-
-        static::installViews('auth', [
+        static::installViews([
             'auth/passwords/email.stub',
             'auth/passwords/reset.stub',
             'auth/login.stub',
@@ -67,11 +46,13 @@ class Tailwind extends Preset
             'errors/503.stub',
             'layouts/partials/_header.stub',
             'layouts/base.stub',
-            'home.stub',
-            'welcome.stub',
+            'dashboard.stub',
         ]);
 
-        file_put_contents(app_path('Http/Controllers/HomeController.php'), static::compileControllerStub());
+        File::copy(
+            __DIR__.'/stubs/controllers/DashboardController.stub',
+            app_path('Http/Controllers/DashboardController.php')
+        );
     }
 
     /**
@@ -84,11 +65,19 @@ class Tailwind extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
+            '@fullhuman/postcss-purgecss' => '^1.2.0',
             'axios' => '^0.18',
+            'babel-eslint' => '^10.0.1',
             'cross-env' => '^5.2',
+            'eslint' => '^5.16.0',
+            'eslint-config-prettier' => '^4.2.0',
+            'eslint-plugin-prettier' => '^3.0.1',
+            'eslint-plugin-vue' => '^5.2.2',
+            'form-backend-validation' => '^2.3.6',
             'laravel-mix' => '^4.0',
-            'laravel-mix-purgecss' => '^4.1',
-            'tailwindcss' => '^1.0.0-beta.5',
+            'portal-vue' => '^2.1.4',
+            'postcss-import' => '^12.0.1',
+            'tailwindcss' => '^1.0.0',
             'vue' => '^2.6',
             'vue-template-compiler' => '^2.6',
         ];
@@ -118,15 +107,19 @@ class Tailwind extends Preset
      *
      * @return void
      */
-    protected static function installViews($baseDirectory, $views)
+    protected static function installViews($views)
     {
-        // All files published by this package use a ".stub" file extension. The
-        // purpose of doing this is to prevent any of the template files from
-        // being confused with the files actually published by this preset.
+        File::deleteDirectory(resource_path('views'));
+
+        static::makeViewDirectories([
+            'auth/passwords',
+            'errors',
+            'layouts/partials',
+        ]);
 
         foreach ($views as $view) {
             File::copy(
-                __DIR__.'/stubs/views/'.$baseDirectory.'/'.$view,
+                __DIR__.'/stubs/views/'.$view,
                 resource_path('views/'.str_replace('stub', 'blade.php', $view))
             );
         }
@@ -137,30 +130,11 @@ class Tailwind extends Preset
      *
      * @return void
      */
-    protected static function installAuthRoutes()
+    protected static function installRoutes()
     {
-        if (str_contains(file_get_contents(base_path('routes/web.php')), 'Auth::routes();')) {
-            return;
-        }
-
-        file_put_contents(
-            base_path('routes/web.php'),
-            "\nAuth::routes();\n\nRoute::get('/home', 'HomeController@index')->name('home');\n",
-            FILE_APPEND
-        );
-    }
-
-    /**
-     * Compile the HomeController class.
-     *
-     * @return void
-     */
-    protected static function compileControllerStub()
-    {
-        return str_replace(
-            '{{namespace}}',
-            Container::getInstance()->getNamespace(),
-            file_get_contents(__DIR__.'/stubs/controllers/HomeController.stub')
+        File::copy(
+            __DIR__.'/stubs/routes/web.stub',
+            base_path('routes/web.php')
         );
     }
 
@@ -171,7 +145,7 @@ class Tailwind extends Preset
      */
     protected static function ensureResourceDirectoriesExist()
     {
-        collect(['css', 'js', 'js/components'])
+        collect(['css', 'js'])
             ->each(function ($dir) {
                 if (! file_exists(resource_path($dir))) {
                     File::makeDirectory(resource_path($dir), 0755, true);
@@ -194,7 +168,7 @@ class Tailwind extends Preset
         File::copy(__DIR__.'/stubs/js/app.stub', resource_path('js/app.js'));
         File::copy(__DIR__.'/stubs/js/bootstrap.stub', resource_path('js/bootstrap.js'));
 
-        File::deleteDirectory(resource_path('js/components/ExampleComponent.vue'));
+        File::deleteDirectory(resource_path('js/components'));
     }
 
     /**

@@ -1,8 +1,17 @@
 import './bootstrap';
+import PortalVue from 'portal-vue';
 
-const app = new Vue({
+Vue.use(PortalVue);
+
+Vue.mixin({
+  computed: {
+    $user: () => window.User,
+  },
+});
+
+new Vue({
   data: {
-    displayNavigation: false
+    displayNavigation: false,
   },
   methods: {
     logout() {

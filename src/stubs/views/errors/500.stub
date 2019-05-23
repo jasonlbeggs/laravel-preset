@@ -10,7 +10,7 @@
         <div class="text-lg text-gray-600">Something went wrong</div>
 
         <div class="mt-6">
-            <a class="text-blue-600 hover:text-blue-700 no-underline" href="{{ route('home') }}">&larr; Home</a>
+            <a class="text-blue-600 hover:text-blue-700 no-underline" href="/dashboard">&larr; Home</a>
         </div>
     </div>
 @endsection
