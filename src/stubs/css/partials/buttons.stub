@@ -1,0 +1,15 @@
+.btn {
+  @apply .px-6 .py-3 .rounded-lg .appearance-none .text-sm .font-semibold .transition .cursor-pointer .border-0;
+}
+
+.btn:focus {
+  @apply .outline-none .shadow-outline;
+}
+
+.btn-blue {
+  @apply .bg-blue-500 .text-white;
+}
+
+.btn-blue:hover {
+  @apply .bg-blue-600;
+}

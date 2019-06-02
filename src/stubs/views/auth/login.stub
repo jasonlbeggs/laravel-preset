@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="mt-6 px-8 py-6 bg-gray-100 flex items-center justify-between rounded-b-lg">
-                            <input tabindex="4" class="btn px-8" type="submit" value="Sign in" />
+                            <input tabindex="4" class="btn btn-blue px-8" type="submit" value="Sign in" />
 
                             @if (Route::has('register'))
                                 <div class="text-sm text-gray-600">

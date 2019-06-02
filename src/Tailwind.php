@@ -145,7 +145,7 @@ class Tailwind extends Preset
      */
     protected static function ensureResourceDirectoriesExist()
     {
-        collect(['css', 'js'])
+        collect(['css', 'css/partials', 'js'])
             ->each(function ($dir) {
                 if (! file_exists(resource_path($dir))) {
                     File::makeDirectory(resource_path($dir), 0755, true);
@@ -181,6 +181,8 @@ class Tailwind extends Preset
         File::deleteDirectory(resource_path('sass'));
 
         File::copy(__DIR__.'/stubs/css/app.stub', resource_path('css/app.css'));
+        File::copy(__DIR__.'/stubs/css/partials/buttons.stub', resource_path('css/partials/buttons.css'));
+        File::copy(__DIR__.'/stubs/css/partials/forms.stub', resource_path('css/partials/forms.css'));
     }
 
     protected static function installFormatters()
